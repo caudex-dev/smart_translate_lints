@@ -24,11 +24,6 @@ class MyCustomLintCode extends DartLintRule {
     problemMessage: 'Translate this line',
     errorSeverity: ErrorSeverity.INFO,
   );
-  static final _code1 = LintCode(
-    name: 'smart_translate_lint_locale_keys_role',
-    problemMessage: 'Use LocaleKeys',
-    errorSeverity: ErrorSeverity.INFO,
-  );
 
   @override
   void run(
@@ -42,13 +37,6 @@ class MyCustomLintCode extends DartLintRule {
             argument.staticParameterElement?.type
                     .getDisplayString(withNullability: true) ==
                 'String') {
-          if (!argument.toSource().contains('LocaleKeys')) {
-            reporter.reportErrorForToken(
-              _code1,
-              argument.beginToken,
-              [],
-            );
-          }
           if (argument.toSource().contains('i18n(') ||
               argument.toSource().contains('tr(')) {
             return;
@@ -65,13 +53,6 @@ class MyCustomLintCode extends DartLintRule {
       final constructorName = node.constructorName;
       if ((constructorName.type.element?.name == 'Text' ||
           constructorName.type.element?.name == 'AutoSizeText')) {
-        if (!node.argumentList.toString().contains('LocaleKeys')) {
-          reporter.reportErrorForNode(
-            _code1,
-            node,
-            [],
-          );
-        }
         if (node.argumentList.toString().contains('i18n(') ||
             node.argumentList.toString().contains('tr(')) {
           return;

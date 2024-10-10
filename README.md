@@ -32,7 +32,6 @@ analyzer:
 custom_lint:
   rules:
     - smart_translate_lint_role: true # for enabled or false for disabled
-    - smart_translate_lint_locale_keys_role: true # for enabled or false for disabled
 ```
 
 This will enable the linting rules provided by Smart Translate Lints in your Flutter project.
